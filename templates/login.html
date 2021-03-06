@@ -11,7 +11,8 @@
             <strong>
                <nav>
                   <ul class="menu">
-                     <li><a href="{{ url_for('homescreen') }}">Log In</a></li>
+                     <button onclick="window.location.href='{{ url_for('authenticate') }}'">Log In</button>
+                     <button onclick="window.location.href='https://www.spotify.com/us/signup/'">Create Account</button>
                   </ul>
                </nav>
             </strong>
