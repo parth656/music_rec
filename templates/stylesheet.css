@@ -1,0 +1,83 @@
+.page-container {
+    background: linear-gradient(180deg, #0e0d0d 50%, #9dbebe 70%) ;
+    background-repeat: no-repeat;width: 100%; height: 100%; margin: 0 auto; padding: 0;}
+.body-background{
+    background-color: white;
+    color: black;
+}
+
+.container {
+    margin: 0 auto;
+    width: 1200px;
+  }
+
+  .scontainer {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+  }
+
+
+  .row {
+    display: flex;
+    flex-flow: row wrap;
+  }
+ 
+  .col {
+    display: flex;
+    margin: 3em;
+  }
+  
+  .col-1 {
+    flex: 1;
+  }
+
+  .col-2 {
+    flex: 2;
+    
+  }
+  
+  .col-3 {
+    flex: 3;
+  }
+  .col-4{
+      flex:4;
+  }
+  
+  .responsive {
+    width: 100%;
+    height: auto;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-right {
+    text-align: right;
+  }
+  .rounded-border {
+    border: 1px solid #ccc;
+    border-radius: 4px; 
+    margin-right:1em;
+    
+  }
+  .blocked-content{
+    margin-left: auto;
+    margin-right: auto;
+    width: 8em;}
+
+  .btn{
+    
+    font-weight:bold;
+    border-radius: 4px; 
+    background-color:darkmagenta;}
+  
+ 
+
+
+  
+  #banner-img {background:linear-gradient(180deg,rgba(255, 255, 255, 0.11) 80%, black 20%);background-image:  url("img/People-Listening-to-Music.jpg");  background-repeat:initial;  height: 25%; width: 100; padding-bottom: 6em; text-align: center;}
+  
+  #card {border: 1px solid #ccc; margin-top: 4em;}
