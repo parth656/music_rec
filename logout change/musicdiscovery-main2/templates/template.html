@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Flask Parent Template</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
+      <style>
+         img{
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            width: auto 100%;
+            height: 100%;
+        }
+      </style>
+      <img src="{{ url_for('static', filename='images/colorfulnote.jpg') }}">
+   </head>
+   <body>
+        <h1 class="logo">Music Discovery Website</h1>
+        <p> {{txt}} </p>
+            <strong>
+               <nav>
+                  <ul class="menu">
+                    <!--
+                     <li><a href="{{ url_for('feed') }}">Feed</a></li>
+                     <li><a href="{{ url_for('discover') }}">Discover</a></li>
+                     <li><a href="{{ url_for('login') }}">Log Out</a></li>
+                     -->
+                     <button onclick="window.location.href='{{ url_for('feed') }}'">Feed</button>
+                     <button onclick="window.location.href='{{ url_for('discover') }}'">Discover</button>
+                     <button onclick="confirmLogout()">Log Out</button>
+                  </ul>
+               </nav>
+            </strong>
+         </div>
+      </header>
+      {% block content %}
+      {% endblock %}
+   <script>
+   function confirmLogout() {
+       var logout = confirm("Are you sure you want to log out?");
+       if (logout == true) {
+           window.location.href="{{ url_for('logout') }}";}}
+   </script>
+   </body>
+</html>
