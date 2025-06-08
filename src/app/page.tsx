@@ -18,6 +18,10 @@ import { Mic, Zap, Music, Video, AlertTriangle, RefreshCw } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
+const PLACEHOLDER_AUDIO_URL = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+const PLACEHOLDER_VIDEO_URL = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+
+
 export default function HomePage() {
   const [isDetectingMood, setIsDetectingMood] = useState(false);
   const [moodAnalysis, setMoodAnalysis] = useState<AnalyzedMood | null>(null);
@@ -56,9 +60,7 @@ export default function HomePage() {
 
     try {
       const audioDataUri = await recordAudio(recordingDuration * 1000);
-      // Recording state is handled by recordAudio promise resolving/rejecting
-      // setIsDetectingMood(false); // Handled by finally or error
-      setRecordingSeconds(0); // Reset timer display
+      setRecordingSeconds(0); 
       setIsFetchingRecommendations(true);
 
       const moodResult = await analyzeMood({ audioDataUri });
@@ -73,8 +75,9 @@ export default function HomePage() {
             type: 'music',
             title: contentResult.musicRecommendation,
             description: `A music track fitting a '${moodResult.mood}' mood.`,
-            thumbnailUrl: `https://placehold.co/400x225.png`,
-            dataAiHint: 'music album',
+            thumbnailUrl: `https://placehold.co/300x300.png`, // Square for album art
+            dataAiHint: 'album art',
+            playbackUrl: PLACEHOLDER_AUDIO_URL,
           });
         }
         if (contentResult.videoRecommendation) {
@@ -83,8 +86,9 @@ export default function HomePage() {
             type: 'video',
             title: contentResult.videoRecommendation,
             description: `A video fitting a '${moodResult.mood}' mood.`,
-            thumbnailUrl: `https://placehold.co/400x225.png`,
+            thumbnailUrl: `https://placehold.co/480x270.png`, // 16:9 for video
             dataAiHint: 'video scene',
+            playbackUrl: PLACEHOLDER_VIDEO_URL,
           });
         }
         setRecommendations(newRecommendations);
@@ -98,8 +102,8 @@ export default function HomePage() {
       setError(errorMessage);
       toast({ title: "Error", description: errorMessage, variant: "destructive" });
     } finally {
-      setIsDetectingMood(false); // Ensure this is always reset
-      setRecordingSeconds(0);   // And this
+      setIsDetectingMood(false); 
+      setRecordingSeconds(0);  
       setIsFetchingRecommendations(false);
     }
   };
@@ -128,7 +132,8 @@ export default function HomePage() {
 
   const handleClosePreview = useCallback(() => {
     setIsPreviewOpen(false);
-    setPreviewItem(null);
+    // Delay setting previewItem to null to allow modal animations/cleanup if any
+    setTimeout(() => setPreviewItem(null), 300);
   }, []);
 
   const handleFeedback = useCallback((itemId: string, feedback: 'liked' | 'disliked') => {
@@ -260,9 +265,9 @@ export default function HomePage() {
       <footer className="py-6 px-4 md:px-8 border-t border-border/50 text-center">
         <p className="text-sm text-muted-foreground">&copy; {new Date().getFullYear()} VibeSync. Your mood, your media.</p>
       </footer>
-      {previewItem && (
+      {previewItem && ( // Conditionally render based on previewItem to allow transitions
         <PreviewModal
-          isOpen={isPreviewOpen}
+          isOpen={isPreviewOpen && !!previewItem}
           onClose={handleClosePreview}
           item={previewItem}
         />
@@ -270,5 +275,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-    

@@ -16,4 +16,6 @@ export interface UIMediaItem {
   thumbnailUrl: string;
   dataAiHint: string;
   feedback?: 'liked' | 'disliked';
+  playbackUrl?: string; // Added for playback
 }
+
