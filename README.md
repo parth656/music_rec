@@ -1,5 +1,12 @@
-# Firebase Studio
+# 🎵 Music Discovery Platform
 
-This is a NextJS starter in Firebase Studio.
+Music recommendation system (In Development)
 
-To get started, take a look at src/app/page.tsx.
+## Tech Stack
+- Next.js, TypeScript, Firebase
+- Spotify API integration (planned)
+
+## Status
+Currently rebuilding in Next.js. Previous Flask version being migrated.
+
+[More details coming soon]
